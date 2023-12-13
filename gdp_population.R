@@ -1,3 +1,4 @@
+#Script to analyze relationship between GDP and Life Expectancy
 library(tidyverse)
 gapminder_1997 <- read_csv("gapminder_1997.csv")
 View(gapminder_1997)
