@@ -10,19 +10,69 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r packages}
+```{r packages, include=FALSE}
 library(tidyverse)
 ```
+#Introduction
 
 This report was prepared to the attention of the United Nations.
 
-```{r data}
+
+```{r data, include=FALSE}
 gapminder_1997 <- read_csv("gapminder_1997.csv")
 
 gapminder_1997
 ```
-```{r ggplot}
+```{r ggplot, echo=FALSE}
 ggplot(data = gapminder_1997, aes(x = gdpPercap, y = lifeExp, color = continent, size = pop/1000000)) + labs(title = "Do people live longer?", x = "GDP Per Capita", y = "Life Expectancy", size = "Population (in millions)") + geom_point()
 ```
 
+```{r}
+nCountries <- gapminder_1997 %>% 
+  select(country) %>% 
+  n_distinct()
 
+nCountries
+
+minGDP <- gapminder_1997 %>% 
+  summarize(round(min(gdpPercap))) %>% 
+  pull()
+
+maxGDP <- gapminder_1997 %>% 
+  summarize(round(max(gdpPercap))) %>% 
+  pull()
+```
+
+|Summary of Data|
+|-------------|-------------|
+|Number of Countries|`r nCountries`|
+|Minimum GDP per capita|`r minGDP`|
+|Maximum GDP per capita|`r maxGDP`|
+
+```{r}
+library(knitr) #need to load library knitr for use of kable function
+
+gapminder_1997 %>% 
+  filter(continent == "Oceania") %>% 
+  select(country, pop, gdpPercap) %>% 
+  kable()
+```
+
+_Summary tables_ *Summary tables*
+__Summary tables__ **Summary tables**
+
+
+
+#header
+##header
+###header
+
+
+1. item 1
+2. item 2
+  + item 2a
+  + item 2b
+  
+  There were `n row(cars)` cars studied
+  
+  when $a \ne 0$ vs. $$x = {b \pm \sqrt{b^2-4ac} \over}
