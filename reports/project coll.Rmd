@@ -9,3 +9,17 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r}
+library(tidyverse)
+
+gapminder_data <- read_csv("C:/Users/cness/OneDrive - Umich/Desktop/un-report/gapminder_data.csv")
+
+```
+
+```{r scatterplot}
+ggplot(data = gapminder_data, aes(x = year, y = pop)) + geom_point() + facet_wrap(vars(continent))
+```
+```{r}
+gapminder_data %>% filter(pop > 1e9) %>% select(country) %>% unique()
+```
+
